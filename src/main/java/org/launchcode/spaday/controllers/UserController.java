@@ -14,8 +14,10 @@ public class UserController {
 
     @GetMapping("add")
     public String displayAddUserForm(){
-        return "/user/add";
+
+        return "user/add";
     }
+
     @PostMapping
     public String processAddUserForm(Model model, @ModelAttribute User user, String verify) {
         // add form submission handling code here
@@ -23,14 +25,14 @@ public class UserController {
         if (verify.equals(user.getPassword())){
             //is true
             // view template with a message that welcomes the user by username
-            model.addAttribute("user",user);
-            return "/user/index";
+            model.addAttribute("user", user);
+            return "user/index";
         } else{
                 //false
             model.addAttribute("error", "Your passwords did not match!");
             model.addAttribute("username", user.getUsername());
             model.addAttribute("email", user.getEmail());
-            return "/user/add";
+            return "user/add";
         }
     }
 }
