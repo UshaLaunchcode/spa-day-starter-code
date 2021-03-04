@@ -4,8 +4,8 @@ import javax.validation.constraints.*;
 
 public class User {
 
-    @NotEmpty(message = "Name is required")
-    @NotBlank(message = "Name is required")
+  // @NotEmpty(message = "Name is required")
+   // @NotBlank(message = "Name is required")
     @NotNull(message = "Name is required")
     @Size(min = 5,max = 15, message = "Name must be between 5 and 15 characters")
     private String username;

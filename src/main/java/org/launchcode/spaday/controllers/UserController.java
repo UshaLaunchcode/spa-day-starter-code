@@ -14,34 +14,27 @@ import javax.validation.constraints.NotNull;
 @RequestMapping("user")
 public class UserController {
 
-    @GetMapping("/add")
+    @GetMapping
+    public String displayAllUsers(Model model){
+        model.addAttribute("title", "All Users");
+        return "user/index";
+    }
+    @GetMapping("add")
     public String displayAddUserForm(Model model) {
         model.addAttribute("user", new User());
         return "user/add";
     }
 
-    @PostMapping
+    @PostMapping("add")
     public String processAddUserForm(@ModelAttribute @Valid User user,
-                                     @NotNull(message="Password verification is required")
-                                     @NotEmpty(message="Password verification is required")
-                                             String verify, Errors errors, Model model) {
+                                      Errors errors, Model model) {
 
-        if (errors.hasErrors()){
-            return "user/add";
-        }else if(user.getPassword().equals(verify)) {
-            model.addAttribute("verifyError", "Passwords do not match");
+        if (errors.hasErrors() && user.getPassword().equals(user.getVerify())){
+            model.addAttribute("user", user);
             return "user/add";
         }
         model.addAttribute("user", user);
-        model.addAttribute("verify", verify);
         return "user/index";
-       /* if (user.getPassword().equals(verify)) {
-           return "user/index";
-        }
-        else {
-            model.addAttribute("error", "Passwords do not match");
-            return "user/add";
-        }*/
 
     }
 
