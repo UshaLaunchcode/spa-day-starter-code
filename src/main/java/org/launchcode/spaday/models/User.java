@@ -19,8 +19,8 @@ public class User {
     @Size(min = 6, message = "Password must be at least 6 characters long")
     private String password;
 
-    @NotBlank(message = "Password verification is required")
-    private String verify;
+    //@NotBlank(message = "Password verification is required")
+   // private String verify;
 
 
     public User() {
@@ -32,7 +32,7 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.verify = verify;
+        //this.verify = verify;
 
     }
 
@@ -60,11 +60,11 @@ public class User {
         this.password = password;
     }
 
-    public String getVerify() {
-        return verify;
-    }
+   // public String getVerify() {
+   //     return verify;
+   // }
 
-    public void setVerify(String verify) {
-        this.verify = verify;
-    }
+   // public void setVerify(String verify) {
+      //  this.verify = verify;
+   // }
 }
